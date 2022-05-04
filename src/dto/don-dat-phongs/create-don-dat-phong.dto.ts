@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 import { IsDateCheckOut } from './CustomValidateCheckOut';
 
-export class DonDatPhongDto {
+export class CreateDonDatPhongDto {
   @IsNotEmpty()
   @IsString()
   @MaxLength(255)
@@ -34,13 +34,6 @@ export class DonDatPhongDto {
   @IsNotEmpty()
   @IsNumber()
   readonly cost: number;
-
-  @IsNotEmpty()
-  @IsNumber()
-  readonly status: number;
-
-  @IsString()
-  readonly note: string;
 
   @IsNotEmpty()
   @IsNumber()

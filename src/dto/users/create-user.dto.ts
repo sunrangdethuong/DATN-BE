@@ -1,8 +1,8 @@
 import { Role } from './../../config/role.enum';
 import {
-  IsBoolean,
   IsEnum,
   IsNotEmpty,
+  IsNumber,
   IsString,
   MaxLength,
 } from 'class-validator';
@@ -32,6 +32,6 @@ export class CreateUserDto {
   readonly role: number;
 
   @IsNotEmpty()
-  @IsBoolean()
-  readonly status: boolean;
+  @IsNumber()
+  readonly status: number;
 }

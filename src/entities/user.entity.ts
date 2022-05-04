@@ -54,5 +54,5 @@ export class User {
     default: 1,
     name: 'status',
   })
-  status: boolean;
+  status: number;
 }

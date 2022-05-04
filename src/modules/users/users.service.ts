@@ -38,7 +38,10 @@ export class UsersService {
             }),
           );
         } else {
-          throw new HttpException('UserName already in use!', HttpStatus.CONFLICT);
+          throw new HttpException(
+            'UserName already in use!',
+            HttpStatus.CONFLICT,
+          );
         }
       }),
     );
@@ -83,7 +86,7 @@ export class UsersService {
 
   async deleteUser(id: number): Promise<string> {
     await this.userRepository.delete(id);
-    return 'Deleted user!'
+    return 'Deleted user!';
   }
 
   findUserById(id: number): Observable<UserI> {
@@ -99,10 +102,18 @@ export class UsersService {
 
   private findUserByUserName(userName: string): Observable<UserI> {
     return from(
-      this.userRepository.findOne(
-        { userName },
-        { select: ['id', 'userName', 'password', 'name', 'phone', 'role', 'status'] },
-      ),
+      this.userRepository.findOne({
+        select: [
+          'id',
+          'userName',
+          'password',
+          'name',
+          'phone',
+          'role',
+          'status',
+        ],
+        where: { userName: userName, status: 1 },
+      }),
     );
   }
 

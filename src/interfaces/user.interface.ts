@@ -5,5 +5,5 @@ export interface UserI {
   readonly name: string;
   readonly phone: string;
   readonly role: number;
-  readonly status: boolean;
+  readonly status: number;
 }

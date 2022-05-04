@@ -1,3 +1,4 @@
+import { CreateDonDatPhongDto } from './../../dto/don-dat-phongs/create-don-dat-phong.dto';
 import { PhongsService } from './../phongs/phongs.service';
 import { DonDatPhongDto } from './../../dto/don-dat-phongs/don-dat-phong.dto';
 import { DonDatPhong } from './../../entities/don-dat-phong.entity';
@@ -17,7 +18,7 @@ export class DonDatPhongsService {
     return await this.donDatPhongRepository.find({ relations: ['phong'] });
   }
 
-  async createDonDatPhong(dto: DonDatPhongDto): Promise<DonDatPhong> {
+  async createDonDatPhong(dto: CreateDonDatPhongDto): Promise<DonDatPhong> {
     const phong = await this.phongsService.updateStatus(dto.phongId, 1);
     const donDatPhong = await this.donDatPhongRepository.create({
       ...dto,
@@ -48,6 +49,13 @@ export class DonDatPhongsService {
   async getDonDatPhongBySoCMT(soCMT: number): Promise<DonDatPhong[]> {
     return await this.donDatPhongRepository.find({
       where: { soCMT: soCMT },
+      relations: ['phong'],
+    });
+  }
+
+  async getDonDatPhongByStatus(status: number): Promise<DonDatPhong[]> {
+    return await this.donDatPhongRepository.find({
+      where: { status: status },
       relations: ['phong'],
     });
   }

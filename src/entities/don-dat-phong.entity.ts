@@ -24,6 +24,13 @@ export class DonDatPhong {
   soCMT: number;
 
   @Column({
+    type: 'varchar',
+    nullable: false,
+    name: 'phone',
+  })
+  phone: string;
+
+  @Column({
     type: 'date',
     nullable: false,
     name: 'check_in',
@@ -50,9 +57,10 @@ export class DonDatPhong {
     default: 0,
     name: 'status',
   })
-  status: boolean;
+  status: number;
 
   @Column({
+    nullable: true,
     type: 'text',
     name: 'note',
   })
